@@ -64,11 +64,11 @@ cd /nfshome0/pixelpro/TriDAS
 source setenv.sh
 cd /pixel/users/Calibrations
 
-python plot_automasked.py /globalscratch/masked_latest.txt
+python3 plot_automasked.py /globalscratch/masked_latest.txt
 
 or
 
-python plot_automasked.py /nfspixelraid/nfspixelraid/users/masks/automasked_channels/automasked_YYYY-MM-DD_HH:MM:SS_####.txt
+python3 plot_automasked.py /nfspixelraid/nfspixelraid/users/masks/automasked_channels/automasked_YYYY-MM-DD_HH:MM:SS_####.txt
 
 ```
 
@@ -81,7 +81,7 @@ This creates a new directory in `automasked/` with timestamped plots.
 ### Basic Command
 
 ```bash
-python plot_automasked.py /path/to/masked_list.txt
+python3 plot_automasked.py /path/to/masked_list.txt
 ```
 
 ### Available Flags
@@ -98,12 +98,12 @@ python plot_automasked.py /path/to/masked_list.txt
 
 Plot all masked ROCs:
 ```bash
-python plot_automasked.py /globalscratch/masked_latest.txt
+python3 plot_automasked.py /globalscratch/masked_latest.txt
 ```
 
 Plot only BLACKLISTED ROCs and keep the intermediate list:
 ```bash
-python plot_automasked.py /globalscratch/masked_latest.txt -blacklisted -save
+python3 plot_automasked.py /globalscratch/masked_latest.txt -blacklisted -save
 ```
 
 ---
