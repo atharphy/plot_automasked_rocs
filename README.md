@@ -1,6 +1,6 @@
 # Automasked ROC Plotter
 
-This tool generates graphical plots of **automasked Pixel ROCs** in the CMS detector. It is intended for internal use by the CMS Pixel Calibration team.
+This tool generates graphical plots of **automasked Pixel ROCs** in the CMS detector. 
 
 The main script, `plot_automasked.py`, processes the list of masked ROCs and produces visual plots indicating their location and status within the pixel detector.
 
@@ -18,10 +18,11 @@ The scripts reside in:
 
 ## Workflow Overview
 
-### Step 1: Generate the Automasked ROC List
+### Step 1: Obtain the Automasked ROC List
 
-Log into the masked ROC summary host and generate the latest masked channel list:
+There are two ways to get the input file:
 
+**Method A: Generate a fresh list**
 ```bash
 ssh yourusername@cmsusr
 ssh srv-s2b18-37-01
@@ -35,6 +36,19 @@ python masked_roc_summary.py | tee "/globalscratch/masked_latest.txt"
 ```
 
 This creates `/globalscratch/masked_latest.txt`, which will be used as input to the plotting script.
+
+**Method B: Obtain a list from a previous run**
+```bash
+ssh yourusername@cmsusr
+ssh srv-s2b18-37-01
+sudo -u pixelpro -H bash -l
+
+cd /nfshome0/pixelpro/TriDAS
+source setenv.sh
+cd /nfspixelraid/nfspixelraid/users/masks/automasked_channels
+```
+
+From here, you can choose the desirable `/nfspixelraid/nfspixelraid/users/masks/automasked_channels/automasked_YYYY-MM-DD_HH:MM:SS_####.txt` file, which will be used as input to the plotting script.
 
 ---
 
@@ -51,6 +65,11 @@ source setenv.sh
 cd /pixel/users/Calibrations
 
 python plot_automasked.py /globalscratch/masked_latest.txt
+
+or
+
+python plot_automasked.py /nfspixelraid/nfspixelraid/users/masks/automasked_channels/automasked_YYYY-MM-DD_HH:MM:SS_####.txt
+
 ```
 
 This creates a new directory in `automasked/` with timestamped plots.
